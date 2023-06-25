@@ -1,12 +1,21 @@
-const http = require('http');
-const PORT = 3000;
+const express = require("express");
+const bodyParse = require("body-parser");
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World!');
+const app = express();
+const PORT = process.env.PORT || 3977;
+
+app.use(bodyParse.urlencoded({extended: true}));
+app.use(bodyParse.json());
+
+app.get("/", (req,res)=>{
+  res.status(200).send({msg: "Hola siuuu"});
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+app.post("/books", (req,res)=>{
+  const {username} = req.body;
+  res.status(200).send({msg: `Hola, ${username}`});
+});
+
+app.listen(PORT, () =>{
+  console.log(`Tu servidor esta listo en el puerto ${PORT}`);
 });
