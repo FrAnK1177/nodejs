@@ -22,7 +22,12 @@ app.get("/", (req,res)=>{
 });
 
 app.get("/books", (req,res)=>{
-  res.status(200).send({msg: "pagina books"});
+  const q = "select * from books";
+  db.query(q,(err,data)=>{
+      if(err) return res.json(err)
+      return res.json(data)
+  })
+  res.status(200).send({msg: "pagina books"+data});
 });
 
 app.post("/books", (req,res)=>{
