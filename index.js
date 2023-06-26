@@ -26,9 +26,7 @@ app.get("/books", (req,res)=>{
   db.query(q,(err,data)=>{
       if(err) return res.json(err)
       console.log('Query result:');
-      for (const row of results) {
-        console.log(row);
-      }
+      console.log(row);
       return res.json(data)
   });
 });
