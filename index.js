@@ -13,7 +13,7 @@ app.get("/", (req,res)=>{
 });
 
 app.get("/books", (req,res)=>{
-  res.status(200).send({msg: "Hola siuuu"});
+  res.status(200).send({msg: "pagina books"});
 });
 
 app.post("/books", (req,res)=>{
