@@ -25,8 +25,11 @@ app.get("/books", (req,res)=>{
   const q = "select * from books";
   db.query(q,(err,data)=>{
       if(err) return res.json(err)
-      console.log(data);
-      res.status(200).send("DB data: "+data);
+      console.log('Query result:');
+      for (const row of results) {
+        console.log(row);
+      }
+      return res.json(data)
   });
 });
 
