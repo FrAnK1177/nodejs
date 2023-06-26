@@ -9,6 +9,14 @@ const PORT = process.env.PORT || 3977;
 app.use(bodyParse.urlencoded({extended: true}));
 app.use(bodyParse.json());
 
+const db = mysql.createConnection({
+  host: process.env.MYSQLHOST || "localhost" ,
+  user: process.env.MYSQLUSER || "root",
+  password: process.env.MYSQLPASSWORD || "root",
+  database: process.env.MYSQLDATABASE || "railway",
+  port: process.env.MYSQLPORT || 8889
+});
+
 app.get("/", (req,res)=>{
   res.status(200).send({msg: "Hola siuuu"});
 });
@@ -23,5 +31,5 @@ app.post("/books", (req,res)=>{
 });
 
 app.listen(PORT, () =>{
-  console.log(`Tu servidor esta listo en el puerto ${PORT}`);
+  console.log(`Tu servidor esta listo en el puerto ${PORT}  env port : db ? :${process.env.MYSQLPORT} `);
 });
