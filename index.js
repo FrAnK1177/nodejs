@@ -4,11 +4,11 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT || 3977;
 
 app.use(bodyParse.urlencoded({extended: true}));
-app.use(cors);
 app.use(bodyParse.json());
 
 const db = mysql.createConnection({
